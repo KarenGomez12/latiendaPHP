@@ -24,24 +24,31 @@
              <th>
                  Población
              </th>
+             <th style="background-color: #0000">
+                 Ciudades
+             </th>
          </tr>
      </thead>
      <tbody>
-         @foreach($paises as $pais => $infopais)
+     @foreach($paises as $pais => $infopais)
          <tr>
-             <td>
-                 {{ $pais }}   {{--  sirven pára imprimir --}}
+             <td rowspan='{{count($infopais["ciudades"])}}'>
+                {{ $pais }} 
+            </td>
+             <td rowspan='{{count($infopais["ciudades"])}}'>
+                {{ $infopais["capital"] }} 
              </td>
-             <td>
-                 {{ $infopais["capital"] }} 
-             </td>
-             <td>
+             <td rowspan='{{count($infopais["ciudades"])}}'>
                  {{ $infopais["moneda"] }} 
              </td>
-             <td>
+             <td rowspan='{{count($infopais["ciudades"])}}'>
                  {{ $infopais["poblacion"] }} 
-             </td>
+              </td>
+              @foreach($infopais["ciudades"] as $ciudad)
+                <td style="background-color: #B3F7F3" >{{$ciudad}}</td>   
          </tr>
+            @endforeach
+
          @endforeach
      </tbody>
      <body></body>
