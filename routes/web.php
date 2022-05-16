@@ -102,3 +102,10 @@ Route:: get('paises', function(){
     return view('paises')
      ->with("paises" , $paises);
 });
+
+/*Route::get('prueba' , function(){
+    return view('layouts.menu');
+});*/
+Route::get('prueba' , function(){
+    return view('productos.new');
+});
