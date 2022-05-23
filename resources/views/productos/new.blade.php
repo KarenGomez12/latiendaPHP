@@ -2,6 +2,9 @@
 
 @section('contenido')
 <div class="row">
+    <h1 class="">Nuevo Producto</h1>
+</div>
+<div class="row">
     <form action="" class="col s8" method="Post">
         <div class="row">
             <div class="col s8 input-field">
