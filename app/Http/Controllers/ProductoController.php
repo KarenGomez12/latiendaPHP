@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Producto;
-use App\Models\Categoria;
 use App\Models\Marca;
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 
 
@@ -31,8 +31,9 @@ class ProductoController extends Controller
 
         //selecionar marcas;
         $marcas = Marca::all();
-        //selecionar categortirias;
-        $categorias = Categorias::all();
+        //selecionar marcas y categorias de bd;
+        $categorias = Categoria::all();
+        //las enviamos a la vista
         return view('productos.new')
                 ->with('categorias' , $categorias)
                 ->with('marcas' , $marcas);
@@ -46,7 +47,33 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //acceder a los datos del formulario
+        //utilizando el obejto $request
+        //echo"<pre>";
+            //para que nos muetsre todos los campos
+            //var_dump($request->all());
+            //para que nos muetsre el campo que queramos
+            //var_dump($request->nombre);
+        //echo"</pre>";
+        //crear el obejto UploardedFile
+        $archivo = $request->imagen;
+        //capturar el nombre "original" del archivo
+        //desde el cliente
+        $nombre_archivo = $archivo->getClientOriginalName();
+        //var_dump($nombre_archivo);
+        //mover el archivo a la carpeta "public/img"
+        $ruta = public_path();
+        $archivo->move("$ruta/img", $nombre_archivo);
+        //registrar producto en la base de datos 
+        $producto = new Producto;
+        $producto->nombre = $request->nombre;
+        $producto->descrpcion = $request->descripcion;
+        $producto->precio = $request->precio;
+        $producto->imagen = $request->nombre_archivo;
+        $producto->marca_id = $request ->marca;
+        $producto->categoria_id = $request ->categoria;
+        $producto->save();
+        echo "producto registrado";
     }
 
     /**

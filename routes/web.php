@@ -109,9 +109,10 @@ Route:: get('paises', function(){
 /*Route::get('prueba' , function(){
     return view('layouts.menu');
 });*/
-Route::get('prueba' , function(){
-    return view('productos.new');
-});
+
+// Route::get('producto/create' , function(){
+//     return view('productos.new');
+// });
 
 
 //Rutas REST
